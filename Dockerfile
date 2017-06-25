@@ -9,22 +9,20 @@ RUN apk -U upgrade && \
       openssl \
       git \
       python \
-      py2-pip py2-openssl py-libxml2 py2-lxml
-
-RUN pip install \
+      py2-pip py2-openssl py-libxml2 py2-lxml && \
+\
+    pip install \
       comictagger \
       configparser \
       tzlocal \
-      pyopenssl
-
-RUN rm -rf /root/.cache \
-    /tmp/src
-
-RUN addgroup -S media && adduser -S media -G media && \
+      pyopenssl && \
+    rm -rf /root/.cache /tmp/* && \
+\
+    addgroup -S media && adduser -S media -G media && \
     mkdir /data /comics && \
-    chown -R media:media /data/ /comics/
-
-RUN git clone -b development https://github.com/evilhero/mylar /mylar && \
+    chown -R media:media /data/ /comics/ && \
+\
+    git clone -b development https://github.com/evilhero/mylar /mylar && \
     chown -R media:media /mylar/
 
 EXPOSE 8090
