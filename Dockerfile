@@ -18,7 +18,7 @@ RUN apk -U upgrade && \
       pyopenssl && \
     rm -rf /root/.cache /tmp/* && \
 \
-    addgroup -S media && adduser -S media -G media && \
+    adduser -u 1001 -S media -G users && \
     mkdir /data /comics && \
     chown -R media:media /data/ /comics/ && \
 \
