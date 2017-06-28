@@ -20,10 +20,10 @@ RUN apk -U upgrade && \
 \
     adduser -u 1001 -S media -G users && \
     mkdir /data /comics && \
-    chown -R media:media /data/ /comics/ && \
+    chown -R media:users /data/ /comics/ && \
 \
     git clone -b development https://github.com/evilhero/mylar /mylar && \
-    chown -R media:media /mylar/
+    chown -R media:users /mylar/
 
 EXPOSE 8090
 
