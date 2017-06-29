@@ -9,6 +9,9 @@ RUN apk -U upgrade && \
       openssl \
       git \
       python \
+      p7zip \
+      unrar \
+      curl \
       py2-pip py2-openssl py-libxml2 py2-lxml && \
 \
     pip install \
