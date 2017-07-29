@@ -1,6 +1,6 @@
 # About
 
-This repository contains artifacts for building a Couchpotato Docker Image on Alpine Linux.
+This repository contains artifacts for building a Mylar Docker Image on Alpine Linux.
 
 It is kept as minimal as possible and uses volumes.
 

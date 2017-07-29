@@ -25,7 +25,7 @@ RUN apk -U upgrade && \
     mkdir /data /comics && \
     chown -R media:users /data/ /comics/ && \
 \
-    git clone -b development https://github.com/evilhero/mylar /mylar && \
+    git clone -b development --depth=1 https://github.com/evilhero/mylar /mylar && \
     chown -R media:users /mylar/
 
 EXPOSE 8090
@@ -33,5 +33,7 @@ EXPOSE 8090
 USER media
 
 VOLUME ["/data", "/comics"]
+
+WORKDIR /mylar
 
 CMD ["/usr/bin/python", "/mylar/Mylar.py", "--datadir=/data", "--config=/data/config.ini", "--nolaunch"]
