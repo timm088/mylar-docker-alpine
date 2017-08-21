@@ -1,8 +1,5 @@
 FROM alpine:3.6
 
-ENV LANG='en_AU.UTF-8' \
-    LANGUAGE='en_AU.UTF-8'
-
 RUN apk -U upgrade && \
     apk add --no-cache \
       ca-certificates \
@@ -12,6 +9,7 @@ RUN apk -U upgrade && \
       p7zip \
       unrar \
       curl \
+      tzdata \
       py2-pip py2-openssl py-libxml2 py2-lxml && \
 \
     pip install \
