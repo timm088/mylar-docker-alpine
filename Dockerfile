@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
 RUN apk -U upgrade && echo "**** install build packages ****" && \
     apk add --no-cache --virtual=build-dependencies \
