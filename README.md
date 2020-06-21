@@ -19,3 +19,5 @@ To run the docker container ensure your run command has the required volumes you
 - 22-06-17: First release, alpine 3.6
 - 09-06-18: Bump to alpine 3.7
 - 23-12-18: Bump to alpine 3.8
+- 07-07-19: Bump to alpine 3.10
+- 08-03-20: Python3 + Mylar3

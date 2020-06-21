@@ -1,30 +1,45 @@
 FROM alpine:3.12
 
-RUN apk -U upgrade && \
+RUN echo "**** install build packages ****" && \
+    apk add --no-cache --virtual=build-dependencies \
+    g++ \
+    gcc \
+    libffi-dev \
+    make \
+    musl-dev
+RUN echo "**** install runtime packages ****" && \
     apk add --no-cache \
     ca-certificates \
-    openssl \
-    git \
-    python \
-    p7zip \
-    unrar \
     curl \
+    git \
+    freetype \
+    jpeg-dev \
+    lcms2 \
+    libwebp \
+    openssl \
+    p7zip \
+    tar \
+    tiff \
     tzdata \
-    py2-pip py2-openssl py-libxml2 py2-lxml && \
-    \
-    pip install \
-    comictagger \
-    configparser \
-    tzlocal \
-    pyopenssl && \
-    rm -rf /root/.cache /tmp/* && \
-    \
+    unrar \
+    unzip \
+    vnstat \
+    wget \
+    xz \
+    zlib-dev
+RUN echo "**** install python packages ****" && \
     adduser -u 1001 -S media -G users && \
     mkdir /data /comics && \
     chown -R media:users /data/ /comics/ && \
     \
-    git clone -b development --depth=1 https://github.com/evilhero/mylar /mylar && \
-    chown -R media:users /mylar/
+    git clone -b master --depth=1 https://github.com/mylar3/mylar3 /mylar && \
+    pip install -r /mylar/requirements.txt && \
+    chown -R media:users /mylar/ && \
+    \
+    echo "**** clean up ****" && \
+    apk del --purge \
+    build-dependencies && \
+    rm -rf /root/.cache /tmp/*
 
 EXPOSE 8090
 
@@ -34,4 +49,4 @@ VOLUME ["/data", "/comics"]
 
 WORKDIR /mylar
 
-CMD ["/usr/bin/python", "/mylar/Mylar.py", "--datadir=/data", "--config=/data/config.ini", "--nolaunch"]
+CMD ["python3", "/mylar/Mylar.py", "--datadir=/data", "--config=/data/config.ini", "--nolaunch"]
