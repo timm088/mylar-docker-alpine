@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM python:3.8-alpine
 
 RUN echo "**** install build packages ****" && \
     apk add --no-cache --virtual=build-dependencies \
